@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import TextInput from "./components/TextInput";
 import WrapperPage from "./pages/WrapperPage";
 import AppButton from "./components/AppButton";
@@ -8,6 +8,11 @@ import apiEndpoint from "./api/apiEndpoint";
 
 function App() {
   const [url, setUrl] = useState("");
+
+
+
+  const numberOfSlide = useRef();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
@@ -35,8 +40,10 @@ function App() {
   };
 
   const getArticle = () => {
+
     setIsLoading(true);
-    fetch(`${apiEndpoint}?` + new URLSearchParams({ article_url: url }), {})
+
+    fetch(`${apiEndpoint}?` + new URLSearchParams({ article_url: url , number_of_points: numberOfSlide?.current.value }), {})
       .then((response) => response.json())
       .then((data) => {
         setIsLoading(false);
@@ -46,13 +53,23 @@ function App() {
   };
 
   return (
-    <WrapperPage>
-      <TextInput value={url} setValue={setUrl} />
-      <AppButton name={"Generate"} onClick={() => getArticle()} />
 
-      <CanvaWrapper isLoading={isLoading} data={data}/>
+
+    <WrapperPage>
+
+
+      <div className="flex justift-center align-middle gap-8 mb-10 mt-10">
+        <TextInput required label={"Url"} value={url} onChange={(event)=>setUrl(event.target.value)} />
+        <TextInput label={"Number Of Slides"} inputRef={numberOfSlide} type={"number"} />
+        <AppButton name={"Generate"} onClick={() => getArticle()} disabled={url.length === 0}/>
+      </div>
+
+
+      <CanvaWrapper isLoading={isLoading} data={data} />
 
       <AppButton name={"download"} onClick={() => downloadPdf()} />
+
+      
     </WrapperPage>
   );
 }

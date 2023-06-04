@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import AppCanvas from "./AppCanvas";
 import AppImageList from "./AppImageList";
 import AppCarousel from "./AppCarousel";
 
 function CanvaWrapper({ isLoading, data }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-  const [addedText, setAddedText] = useState("null");
-
+ 
   return (
     <>
       <div className="w-1/2 flex justify-center" style={{height:"40rem",}}>
@@ -41,7 +40,7 @@ function CanvaWrapper({ isLoading, data }) {
             ]:
             <AppCanvas
                 selectedImage={selectedTemplate?.start}
-                addedText={"title"}
+                addedText={"This is how the text will look like!"}
                 textStyle={selectedTemplate?.textStyle}
               />
         

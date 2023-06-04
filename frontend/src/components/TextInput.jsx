@@ -3,16 +3,20 @@ import TextField from '@mui/material/TextField';
 
 
 
-function TextInput({value,setValue}) {
+function TextInput(props) {
 
   return (
 
      <TextField
-          label="Url"
-          value={value}
-        onChange={(event) => {
-            setValue(event.target.value);
-        }}
+          // inputRef={refe}
+          // label={label}
+          // value={value}
+          // onChange={(event) => {
+          //     setValue(event.target.value);
+          // }}
+
+          {...props}
+
         />
 
   )
