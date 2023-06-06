@@ -42,6 +42,8 @@ function CanvaWrapper({ isLoading, data }) {
                 selectedImage={selectedTemplate?.start}
                 addedText={"This is how the text will look like!"}
                 textStyle={selectedTemplate?.textStyle}
+       
+
               />
         
              }

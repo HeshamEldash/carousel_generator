@@ -5,6 +5,8 @@ import AppButton from "./components/AppButton";
 import CanvaWrapper from "./components/CanvaWrapper";
 import html2pdf from "html2pdf.js/dist/html2pdf.min";
 import apiEndpoint from "./api/apiEndpoint";
+import html2canvas from 'html2canvas';
+
 
 function App() {
   const [url, setUrl] = useState("");
@@ -19,24 +21,57 @@ function App() {
 
   const downloadPdf = () => {
     let element = document.querySelectorAll("#canvas");
+    let elementText = document.getElementsByClassName("text");
 
     const container = document.createElement("div");
 
     element.forEach((item) => {
-      const clonedItem = item.cloneNode(true);
-      clonedItem.style.width = "1080px";
-      clonedItem.style.height = "1080px";
-      container.appendChild(clonedItem);
+
+      // refernce the original canvas
+      const originalCanvasLower =  item.querySelector(".lower-canvas")
+      const originalCanvasUpper =  item.querySelector(".upper-canvas")
+
+      // create a new element
+      const clonedElement = document.createElement("div");
+      
+      //Copy the origianl element 
+      clonedElement.innerHTML = item.innerHTML;
+
+      //Select the cloned canvas 
+      const clonedCanvasLower = clonedElement.querySelector(".lower-canvas")
+      const clonedCanvasUpper = clonedElement.querySelector(".upper-canvas")
+
+      
+      const clonedCanvasContextLower = clonedCanvasLower.getContext("2d");
+      const clonedCanvasContextUpper = clonedCanvasUpper.getContext("2d");
+
+      // cloned canvas draws the contents of the original canvas 
+      clonedCanvasContextLower.drawImage(originalCanvasLower, 0, 0);
+      clonedCanvasContextUpper.drawImage(originalCanvasUpper, 0, 0);
+      
+      clonedCanvasLower.style.position = "relative";
+      clonedCanvasLower.style.width = "100%";
+      clonedCanvasLower.style.height = "100%";
+
+      clonedCanvasUpper.style.position = "relative";
+      clonedCanvasUpper.style.width = "100%";
+      clonedCanvasUpper.style.height = "100%";
+
+      clonedElement.style.width = "1080px"
+      clonedElement.style.height = "1080px"
+
+      container.appendChild(clonedElement);  
     });
 
     const options = {
       filename: "carousel.pdf",
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { scale:2},
       jsPDF: { unit: "px", format: [1080, 1080], orientation: "portrait" },
     };
 
-    html2pdf().set(options).from(container).save();
+    const worker = html2pdf()
+    worker.set(options).from(container).save();
   };
 
   const getArticle = () => {
@@ -75,3 +110,34 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+const downloadPdf = () => {
+  let element = document.querySelectorAll("#canvas");
+
+  const container = document.createElement("div");
+
+  element.forEach((item) => {
+    const clonedItem = item.cloneNode(true);
+
+    clonedItem.style.width = "1080px";
+    clonedItem.style.height = "1080px";
+    container.appendChild(clonedItem);
+  });
+
+  const options = {
+    filename: "carousel.pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale:2},
+    jsPDF: { unit: "px", format: [1080, 1080], orientation: "portrait" },
+  };
+
+  console.log(container)
+  const worker = html2pdf()
+  worker.set(options).from(container).save();
+};
