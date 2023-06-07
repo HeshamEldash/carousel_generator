@@ -69,7 +69,7 @@ function AppImageList({ selectImage: selectedTemplate }) {
         display: "flex",
       }}
     >
-      <div
+      {/* <div
         style={{
           backgroundColor: selectedColor,
           width: "120px",
@@ -82,7 +82,7 @@ function AppImageList({ selectImage: selectedTemplate }) {
             <SketchPicker color={selectedColor} onChange={handleChange}  onChangeComplete={(color)=>setTemplate(color)}/>{" "}
           </div>
         )}
-      </div>
+      </div> */}
 
       {templates.map((item, index) => (
         <ImageListItem key={index} onClick={() => selectedTemplate(item)}>

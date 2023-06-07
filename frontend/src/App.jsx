@@ -50,12 +50,12 @@ function App() {
       clonedCanvasContextUpper.drawImage(originalCanvasUpper, 0, 0);
       
       clonedCanvasLower.style.position = "relative";
-      clonedCanvasLower.style.width = "100%";
-      clonedCanvasLower.style.height = "100%";
+      clonedCanvasLower.style.width = "1080px"
+      clonedCanvasLower.style.height = "1080px"
 
       clonedCanvasUpper.style.position = "relative";
-      clonedCanvasUpper.style.width = "100%";
-      clonedCanvasUpper.style.height = "100%";
+      clonedCanvasUpper.style.width = "1080px"
+      clonedCanvasUpper.style.height = "1080px"
 
       clonedElement.style.width = "1080px"
       clonedElement.style.height = "1080px"

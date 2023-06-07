@@ -9,12 +9,20 @@ function AppCanvas({ selectedImage, addedText , textStyle}) {
 
   useEffect(()=>{
     const addText = ()=>{
-      const text = new fabric.Text("addedText")
+      // const text = new fabric.Text("This is how the text\n will look like!")
+      const text = new fabric.Text(addedText)
+      text.scaleToWidth(480)
+
+      text._wrapText(4850)
+      
+
+      text.set(textStyle)
+      
       textRef.current = text    
       editor.canvas.add(text)
-      editor.canvas.setDimensions({width:"100%", height:"100%"})
+      editor.canvas.setDimensions({width:"480", height:"480"})
   }
-    if (editor && !textRef.current ){
+    if (editor && !textRef.current && textStyle){
       addText()
     }
 
@@ -38,3 +46,4 @@ function AppCanvas({ selectedImage, addedText , textStyle}) {
 }
 
 export default AppCanvas;
+

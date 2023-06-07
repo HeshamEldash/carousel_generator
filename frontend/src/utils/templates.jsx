@@ -5,31 +5,16 @@ import {a2,b2,c2} from "../assets/template_2/template2.js"
 
 
 export default [
-    // {
-    //   start: null,
-    //   middle:testImage,
-    //   end:testImage,
-    //   textStyle:{
-    //     position: "absolute",
-    //     fontSize: "2em",
-    //     color: "white",
-    //     top: "25%",
-    //     lineBreak: "auto",
-    //     left: "10px",
-    //     fontFamily: "cursive",
-    //   }
-    // },
     {
       start: a,
       middle:b,
       end:c,
       textStyle:{
-        position: "absolute",
-        fontSize: "2em",
-        color: "white",
-        top: "25%",
+        // position: "absolute",
+        fontSize: "48",
+        fill: 'white',
+        // top: "25%",
         lineBreak: "auto",
-        left: "10px",
         fontFamily: "cursive",
       }
     },
