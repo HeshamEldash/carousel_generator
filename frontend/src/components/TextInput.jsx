@@ -8,15 +8,7 @@ function TextInput(props) {
   return (
 
      <TextField
-          // inputRef={refe}
-          // label={label}
-          // value={value}
-          // onChange={(event) => {
-          //     setValue(event.target.value);
-          // }}
-
           {...props}
-
         />
 
   )

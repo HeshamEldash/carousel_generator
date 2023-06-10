@@ -1,4 +1,4 @@
-import testImage from "../../public/testimage.jpg";
+
 import {a,b,c} from "../assets/template_1/template1.js"
 import {a2,b2,c2} from "../assets/template_2/template2.js"
 
@@ -10,12 +10,11 @@ export default [
       middle:b,
       end:c,
       textStyle:{
-        // position: "absolute",
         fontSize: "48",
         fill: 'white',
-        // top: "25%",
         lineBreak: "auto",
         fontFamily: "cursive",
+        top:100
       }
     },
     {
@@ -24,13 +23,11 @@ export default [
       end:c2,
       textStyle:{
         position: "absolute",
-        fontSize: "2em",
-        color: "black",
-        top: "10%",
+        fontSize: "30",
+        fill: "black",
         lineBreak: "auto",
-        left: "15%",
-        marginRight:"50px",
         fontFamily: "sans-serif",
+        top:100
       }
     }
     

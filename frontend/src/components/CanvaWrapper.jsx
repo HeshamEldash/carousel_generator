@@ -3,18 +3,18 @@ import AppCanvas from "./AppCanvas";
 import AppImageList from "./AppImageList";
 import AppCarousel from "./AppCarousel";
 
-function CanvaWrapper({ isLoading, data }) {
+function CanvaWrapper({ isLoading, data, isError}) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
  
+
+  if (isError) return <div style={{height:"40rem"}} className="w-1/2 flex justify-center" ><h2 className="mt-1rem text-2xl">Sorry an error has occured.... Please try again!  </h2></div>
+
+  if(isLoading) return <div  style={{height:"40rem"}} className="w-1/2 flex justify-center "><h2 className="mt-1rem text-2xl">Loading....  </h2></div>
+
   return (
     <>
-      <div className="w-1/2 flex justify-center" style={{height:"40rem",}}>
-        {isLoading ? (
-          <h2 className="mt-1rem">Loading....</h2>
-        ) : (
+      <div className="w-full flex justify-center">
           <AppCarousel>
-          
-
             {data?
               [
               <AppCanvas
@@ -23,7 +23,7 @@ function CanvaWrapper({ isLoading, data }) {
                 textStyle={selectedTemplate?.textStyle}
               />,
 
-              ...data?.middle_points?.map((point, index) => (
+              ...data?.middle_points?.map((point) => (
                 <AppCanvas
                   key={point}
                   selectedImage={selectedTemplate?.middle}
@@ -42,15 +42,12 @@ function CanvaWrapper({ isLoading, data }) {
                 selectedImage={selectedTemplate?.start}
                 addedText={"This is how the text will look like!"}
                 textStyle={selectedTemplate?.textStyle}
-       
-
               />
         
              }
 
 
           </AppCarousel>
-        )}
       </div>
 
       <AppImageList selectImage={setSelectedTemplate} />

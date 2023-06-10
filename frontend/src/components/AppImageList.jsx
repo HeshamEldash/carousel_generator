@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import ImageList from "@mui/material/ImageList";
+
 import ImageListItem from "@mui/material/ImageListItem";
 import { SketchPicker } from "react-color";
-
+import { getComplementaryColor } from "../utils/colors";
 import templates from "../utils/templates";
 
 function AppImageList({ selectImage: selectedTemplate }) {
@@ -20,7 +19,7 @@ function AppImageList({ selectImage: selectedTemplate }) {
   };
 
   const  setTemplate = (color)=>{
-    console.log(color)
+
     const canvas = document.createElement("canvas");
     const width = 1080;
     const height = 1080;
@@ -44,12 +43,9 @@ function AppImageList({ selectImage: selectedTemplate }) {
         middle:image.src,
         end:image.src,
         textStyle:{
-          position: "absolute",
-          fontSize: "2em",
-          color: "white",
-          top: "25%",
+          fontSize: "30",
+          fill: getComplementaryColor(color.hex),
           lineBreak: "auto",
-          left: "10px",
           fontFamily: "cursive",
         }
       }
@@ -59,17 +55,17 @@ function AppImageList({ selectImage: selectedTemplate }) {
 
   return (
     <div
+      className="lg:max-w-1/2 lg:overflow-auto"
       style={{
         backgroundColor: "red",
-        maxWidth: "50%",
         height: "100px",
         minWidth: "50px",
         marginBottom: "5rem",
-        overflow: "auto",
+        maxWidth:"20rem",
         display: "flex",
       }}
     >
-      {/* <div
+      <div
         style={{
           backgroundColor: selectedColor,
           width: "120px",
@@ -82,7 +78,7 @@ function AppImageList({ selectImage: selectedTemplate }) {
             <SketchPicker color={selectedColor} onChange={handleChange}  onChangeComplete={(color)=>setTemplate(color)}/>{" "}
           </div>
         )}
-      </div> */}
+      </div>
 
       {templates.map((item, index) => (
         <ImageListItem key={index} onClick={() => selectedTemplate(item)}>
@@ -94,28 +90,6 @@ function AppImageList({ selectImage: selectedTemplate }) {
         </ImageListItem>
       ))}
     </div>
-  );
-
-  return (
-    <ImageList
-      sx={{ maxWidth: "70rem", height: 100 }}
-      cols={templates.length}
-      rowHeight={120}
-    >
-      {templates.map((item, index) => (
-        <ImageListItem
-          key={index}
-          style={{ width: 100, height: 10 }}
-          onClick={() => selectedTemplate(item)}
-        >
-          <img
-            src={`${item.start}?w=164&h=164fit=crop&auto=format`}
-            srcSet={`${item.start}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            loading="lazy"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
   );
 }
 
