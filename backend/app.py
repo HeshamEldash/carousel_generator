@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, url_for, jsonify
+from flask import Flask,  request, jsonify
 from flask_cors import CORS
 
 import openai
@@ -6,12 +6,10 @@ import json
 
 app = Flask(__name__)
 
-app.config["DEBUG"] = True
-
 CORS(app)
 
 
-RESPONSE_STRUCTURE =     json.dumps('{"title":first point, "middle_points":[points], "summery":summery}')
+RESPONSE_STRUCTURE = json.dumps('{"title":first point, "middle_points":[points], "summery":summery}')
 
 @app.route("/", methods=("GET", "POST"))
 def index():
@@ -33,7 +31,7 @@ def index():
     
     
 def generate_prompt(article_url, number_of_points):
-    print(number_of_points)
+
     example_response =json.dumps( {
   "response": {
     "title": "A Comprehensive Guide to Machine Learning",
