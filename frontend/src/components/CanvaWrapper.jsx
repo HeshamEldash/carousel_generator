@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import AppCanvas from "./AppCanvas";
 import AppImageList from "./AppImageList";
 import AppCarousel from "./AppCarousel";
+import templates from "../utils/templates";
 
 function CanvaWrapper({ isLoading, data, isError}) {
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(templates[0]);
  
 
   if (isError) return <div style={{height:"40rem"}} className="w-1/2 flex justify-center" ><h2 className="mt-1rem text-2xl">Sorry an error has occured.... Please try again!  </h2></div>
@@ -45,8 +46,6 @@ function CanvaWrapper({ isLoading, data, isError}) {
               />
         
              }
-
-
           </AppCarousel>
       </div>
 

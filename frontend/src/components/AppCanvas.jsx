@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 
-const CANVAS_WIDTH = "480";
-const TEXT_WIDTH = 460;
+const CANVAS_WIDTH = window.innerWidth < 600 ? window.innerWidth.toString() : "480" 
+const TEXT_WIDTH = parseInt(CANVAS_WIDTH)-20;
 const TOP_POSITION = 100
+
+const SCALE = TEXT_WIDTH /1000
 
 const textStyleChanged = (originalTextRef, newStyle)=>{
   if (originalTextRef.fill != newStyle?.fill || originalTextRef.fontSize != newStyle?.fontSize || originalTextRef.fontFamily != newStyle?.fontFamily){
@@ -53,7 +55,9 @@ function AppCanvas({ selectedImage, addedText, textStyle }) {
         ...textStyle,
         width: TEXT_WIDTH,
         textWrapping: "char",
-        top:TOP_POSITION
+        top:TOP_POSITION,
+        left:textStyle.left * SCALE
+      
       });
       textRef.current = text;
       editor.canvas.add(text);

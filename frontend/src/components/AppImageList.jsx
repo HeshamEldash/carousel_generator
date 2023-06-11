@@ -55,14 +55,16 @@ function AppImageList({ selectImage: selectedTemplate }) {
 
   return (
     <div
-      className="lg:max-w-1/2 lg:overflow-auto"
+      className="lg:max-w-1/2 "
       style={{
         backgroundColor: "red",
         height: "100px",
         minWidth: "50px",
         marginBottom: "5rem",
-        maxWidth:"20rem",
+        maxWidth:"30rem",
         display: "flex",
+        overflowY:"hidden",
+        overflowX:"scroll"
       }}
     >
       <div
@@ -70,18 +72,20 @@ function AppImageList({ selectImage: selectedTemplate }) {
           backgroundColor: selectedColor,
           width: "120px",
           height: "100px",
+          minWidth:"100px"
         }}
         onClick={handleClick}
       >
         {showPicker && (
-          <div style={{ position: "absolute", marginLeft: "-15rem" }}>
-            <SketchPicker color={selectedColor} onChange={handleChange}  onChangeComplete={(color)=>setTemplate(color)}/>{" "}
+          <div style={{  position:"absolute", zIndex:"1", left:"30px", top:"400px" }}>
+            <SketchPicker color={selectedColor} onChange={handleChange}  onChangeComplete={(color)=>setTemplate(color)}/>
           </div>
+
         )}
       </div>
 
       {templates.map((item, index) => (
-        <ImageListItem key={index} onClick={() => selectedTemplate(item)}>
+        <ImageListItem key={index} onClick={() => selectedTemplate(item)} sx={{ minWidth:"100px", minHeight:"100px"}}>
           <img
             src={`${item.start}?w=164&h=164fit=crop&auto=format`}
             srcSet={`${item.start}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
