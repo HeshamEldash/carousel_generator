@@ -78,7 +78,6 @@ function AppCanvas({ selectedImage, addedText, textStyle }) {
     if (editor  && !imageRef.current?._element ) {
 
           addImage()
-          console.log(imageRef.current)
     } else if(editor && imageRef.current && imageRef.current._element != selectedImage ){
       editor.canvas.remove(imageRef.current);
       addImage()

@@ -1,6 +1,13 @@
 import { useRef, useState } from "react";
 import html2pdf from "html2pdf.js/dist/html2pdf.min";
 
+import { FilePond, registerPlugin } from 'react-filepond'
+import 'filepond/dist/filepond.min.css'
+// import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
+// import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+// import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+
+
 import TextInput from "./components/TextInput";
 import WrapperPage from "./pages/WrapperPage";
 import AppButton from "./components/AppButton";
@@ -9,9 +16,15 @@ import apiEndpoint from "./api/apiEndpoint";
 
 const CANVAS_WIDTH = "1080px";
 
+
+
+
+
 function App() {
   const [url, setUrl] = useState("");
   const numberOfSlide = useRef();
+
+  const [files, setFiles] = useState([])
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -92,6 +105,7 @@ function App() {
 
   return (
     <>
+      <h1 className="text-4xl text-center mt-5 font-bold text-slate-700">AI Carousel Generator</h1>
       <WrapperPage>
         {/* <div className="text-center mb-16 mt-10 lg:mt:0">
           <h1 className="text-5xl ">AI Generated Carousel</h1>
@@ -118,8 +132,17 @@ function App() {
           />
         </div>
 
+        <FilePond
+        files={files}
+        onupdatefiles={setFiles}
+        allowMultiple={false}
+        // maxFiles={3}
+        name="files"
+        labelIdle='Drag & Drop your own template or <span class="filepond--label-action">Browse</span>'
+      />
+
         <div className="lg:gap-8 flex flex-col items-center">
-          <CanvaWrapper isLoading={isLoading} data={data} isError={isError} />
+          <CanvaWrapper isLoading={isLoading} data={data} isError={isError} uploadedtemplate={files}/>
           <AppButton name={"download"} onClick={() => downloadPdf()} />
         </div>
       </WrapperPage>

@@ -45,9 +45,9 @@ def generate_prompt(article_url, number_of_points):
 })
     
     
-    return  f"Summarize  this article {article_url} in {10} short points .\
+    return  f"Summarize  this article {article_url} in {10} points .\
             the middle_points should be the same number as {number_of_points}.\
-            each point should not exceed 20 words.\
+              this will be used in a linkdin carousel, so it should be informative\
             on top of the points, Generate a title at the begening and a short 20 word summery at the end.\
             The response should be in a json format of {RESPONSE_STRUCTURE}\
                 example response {example_response}"
