@@ -107,10 +107,8 @@ function App() {
     <>
       <h1 className="text-4xl text-center mt-5 font-bold text-slate-700">AI Carousel Generator</h1>
       <WrapperPage>
-        {/* <div className="text-center mb-16 mt-10 lg:mt:0">
-          <h1 className="text-5xl ">AI Generated Carousel</h1>
-        </div> */}
-        <div className="flex flex-col justify-center align-middle  gap-4 mb-12 mt-10 w-full  items-center  lg:gap-8 lg:w-1/3">
+  
+        <div className="flex flex-col justify-center align-middle  gap-4 mb-12 mt-10 w-full  items-center  lg:gap-8 lg:w-1/3 pt-80 lg:pt-0" >
           <TextInput
             sx={{ width: "70%" }}
             required
