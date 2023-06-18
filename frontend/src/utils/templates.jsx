@@ -77,11 +77,6 @@ export default [
         left:100,
       }
     },
-
-    
-    
-    
-    
     
   ];
   
