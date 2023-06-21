@@ -39,6 +39,7 @@ function App() {
       // refernce the original canvas
       const originalCanvasLower = item.querySelector(".lower-canvas");
       const originalCanvasUpper = item.querySelector(".upper-canvas");
+      console.log(originalCanvasLower)
 
       // create a new element
       const clonedElement = document.createElement("div");
